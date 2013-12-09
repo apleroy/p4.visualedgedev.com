@@ -1,0 +1,210 @@
+.navigation {
+  width: 100%;
+  height: 60px;
+  background-color: #2F363E;
+  z-index: 2;
+  color: white;
+}
+
+    .logo {
+      font-size: 20px;
+      float:left;
+      margin-top: 15px;
+    }
+    .navigation_links {
+      margin-top: 15px;
+      color: white;
+      float: right;
+    }
+
+      a {
+        color: white;
+        padding: 5px;
+      }
+      
+      li {display:inline;}
+
+      a:link {
+        text-decoration: none;
+        color: #000066;
+      }
+
+      a:visited {text-decoration: none}
+
+      a:active {text-decoration: none}
+
+      a:hover {border-bottom: solid 2px #0099ff;}
+
+.error {
+  color: red;
+}
+
+/*INDEX PAGE ELEMENTS----------------------------------------*/
+  
+  .container {
+    max-width: 760px;
+  }
+
+  .input_holder {
+    width: 100%;
+  }
+
+  #break_before_footer {
+      height: 40px;
+  }
+
+  #main_add {
+    width: 100%;
+    margin: auto;
+  }
+
+  #empty_placeholder {
+    height: 300px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+
+/*NEWLY CREATED LIST ELEMENTS------------------------------*/
+
+    #new, [id*="new_holder"] {
+      border-radius: 5px;
+    }
+
+    [class*="col-"] {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      min-height: 50px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      width: 100%;
+      
+      border: 1px solid #ddd;
+      background-color: rgba(86,61,124,.15);
+      border: 1px solid rgba(86,61,124,.2);
+      
+    }
+
+      .list_item_header {
+        color: white;
+        width: 95%;
+        margin: auto;
+        white-space: pre-wrap;
+        min-height: 30px;
+        margin: 2.5%;
+        margin-bottom: 0;
+        padding: 5px;
+        font-family: sans-serif;
+        font-size: 20px;
+        height: auto;
+        overflow: auto;
+      }
+
+      .list_item_body {
+        background-color: white;
+        width: 95%;
+        margin: auto;
+        white-space: pre-wrap;
+        
+        margin: 2.5%;
+        margin-top: 0;
+        padding: 5px;
+        font-family: sans-serif;
+        font-size: 14px;
+        height: auto;
+        overflow: auto;
+      }
+
+    #new_edit_button {
+      margin-left: 2.5%;
+      margin-right: 1%;
+      
+    }
+
+   
+
+/*MODAL--------------------------------------------*/
+  
+  #color_choices {
+    margin-right: 10px;
+  }
+
+  #list_title_entry, #list_text_entry {
+      width: 100%;
+      max-width: 100%;   
+  }
+
+  #red {
+    background-color: #9d261d;
+  }
+  #orange {
+    background-color: #f89406;
+  }
+  #gray {
+    background-color: #555;
+  } 
+  #green {
+    background-color: #46a546;
+  }
+  #blue {
+    background-color: #049cdb;
+  }
+  #purple {
+    background-color: #7a43b6;
+  }
+
+  .input_error {
+    color: red;
+    font-size: 12px;
+    width: 100%;
+  }
+
+
+
+/*GENERAL ELEMENTS--------------------------*/
+
+h4 {
+  margin-top: 25px;
+}
+.row {
+  margin-bottom: 20px;
+}
+.row .row {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+
+hr {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+
+/*FOOTER--------------------------------------*/
+html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 90%;
+        height: auto !important;
+        height: 90%;
+        
+        margin: 0 auto;
+        background-color: gray;
+      }
+
+      /* Set the fixed height of the footer here */
+      
+      #footer {
+        height: 80px;
+        text-align: center;
+        vertical-align: middle;
+        font-family: sans-serif;
+      }
+
