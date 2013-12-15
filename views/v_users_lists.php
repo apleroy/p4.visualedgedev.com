@@ -1,5 +1,5 @@
   <div class="container">
-<h1>This is v_users_lists</h1>
+<h1>This is v_lists</h1>
 	     
 		        <p class="lead">Add, edit, style, and sort list items to create a working open items list, to-do list, or brief agenda.</p>
 		        
@@ -9,7 +9,7 @@
 					</button>
 
 					<!-- Modal -->
-				<form id="add_list_form" method='POST' action='/lists/p_add'>
+				<form id="add_list_form" method='POST' action='/users/p_addlist'>
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">

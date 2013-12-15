@@ -13,17 +13,7 @@
 
 $(document).ready(function() {
 
-						$('#add_item').click(function() {
-						    $.ajax({
-						        type: 'POST',
-						        url: '/views/process.php',
-						        success: function(response) { 
-
-						            // Enject the results received from process.php into the results div
-						            $('#ajax_result').html(response);
-						        },
-						    }); // end ajax setup
-						});
+					
 
 	//DRAG AND DROP
 	
@@ -197,20 +187,7 @@ $(document).ready(function() {
 
 
 
-	//DELETE ITEM
 	
-		//Get to the parent and delete it and all children
-		$( "#list_item_holder" ).on( "click", "#new_delete_button", function() {
-		  	$(this).parent().remove();
-		  	
-		  	//decrease counter for tracking
-		  	counter--;
-		  		if( counter == 0 ) {
-					$("#empty_placeholder").show();
-				} else {
-					$("#empty_placeholder").hide();
-				}
-		});	
 	
 
 	//EDIT ITEM

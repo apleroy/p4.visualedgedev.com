@@ -1,13 +1,11 @@
 var options = { 
     type: 'POST',
-    url: '/users/lists/p_add/',
-    beforeSubmit: function() {
-        $('#list_item_holder').html("Adding...");
-    },
+    url: '/users/p_addlist/',
     success: function(response) {   
-        $('#list_item_holder').html(response);
+        $('#ajax_result').prepend(response);
     } 
 }; 
 
 // Using the above options, ajax'ify the form
 $('#add_list_form').ajaxForm(options);
+

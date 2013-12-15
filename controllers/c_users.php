@@ -166,7 +166,6 @@ class users_controller extends base_controller {
 	}
 
 
-
 	public function lists($error = NULL) {
 
 		if(!$this->user) {
@@ -177,6 +176,13 @@ class users_controller extends base_controller {
 
 		//This person's profile and name
 		$this->template->title = "Profile of ".$this->user->first_name;
+
+		$client_files_head = Array(
+	        "/js/jquery.form.js",
+	        "/js/users_lists_add.js"
+    	);
+
+    	$this->template->client_files_head = Utils::load_client_files($client_files_head); 
 
 		//This person's bio
 		$listsQ = "SELECT list_title_entry
@@ -192,8 +198,98 @@ class users_controller extends base_controller {
 			
 		
 	}
-
 	
+	public function addlist() {
+
+		$this->template->content = View::instance('v_users_lists_add');
+
+		$client_files_head = Array(
+	        "/js/jquery.form.js",
+	        "/js/users_lists_add.js"
+    	);
+
+    	$this->template->client_files_head = Utils::load_client_files($client_files_head);   
+		
+		//$this->template->content->error = $error;
+		
+		echo $this->template;
+
+	}
+
+	public function p_addlist() {
+
+		$_POST['user_id'] = $this->user->user_id;
+
+		$_POST['created'] = Time::now();
+
+		$_POST['modified'] = Time::now();
+
+		
+		//error check to prevent blank post
+		if(empty($_POST['list_title_entry'])) {
+			
+			//Router::redirect("/lists/add/error");
+		
+		}
+
+	    $new_post_id = DB::instance(DB_NAME)->insert('lists',$_POST);
+
+	  
+	    # Set up the view
+	    $view = View::instance('v_users_lists_p_add');
+
+	    # Pass data to the view
+	    $view->created     = $_POST['created'];
+	    $view->list_title_entry = $_POST['list_title_entry'];
+	    $view->new_post_id = $new_post_id;
+
+	    # Render the view
+	    echo $view;     
+
+
+	}
+
+	public function deletelist() {
+
+		$this->template->content = View::instance('v_users_lists_delete');
+
+		$client_files_head = Array(
+	        "/js/jquery.form.js",
+	        "/js/users_lists_add.js",
+	        "/js/users_lists_delete.js"
+    	);
+
+    	$this->template->client_files_head = Utils::load_client_files($client_files_head);   
+		
+		//$this->template->content->error = $error;
+		
+		echo $this->template;
+
+	}
+
+	public function p_deletelist() {
+
+		$q = "SELECT list_id
+				FROM lists
+	        	WHERE lists.user_id = ".$this->user->user_id;
+	        	;		
+
+	      
+	    # Set up the view
+	    $view = View::instance('v_users_lists_p_delete');
+
+	    // # Pass data to the view
+	    // $view->created     = $_POST['created'];
+	    // $view->list_title_entry = $_POST['list_title_entry'];
+	    // $view->new_post_id = $new_post_id;
+
+	    # Render the view
+	    echo $view;     
+
+
+	}
+
+
 
 }
 
