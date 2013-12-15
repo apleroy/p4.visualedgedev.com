@@ -13,7 +13,17 @@
 
 $(document).ready(function() {
 
-	
+						$('#add_item').click(function() {
+						    $.ajax({
+						        type: 'POST',
+						        url: '/views/process.php',
+						        success: function(response) { 
+
+						            // Enject the results received from process.php into the results div
+						            $('#ajax_result').html(response);
+						        },
+						    }); // end ajax setup
+						});
 
 	//DRAG AND DROP
 	
@@ -32,7 +42,7 @@ $(document).ready(function() {
 
 			$("#myModal").on("hidden.bs.modal", function() {
 
-				$("#list_title_entry").val('');
+				$("#list_title").val('');
 				$("#list_text_entry").val('');
 				$("#add_item").html("Add Item");
 				$("#myModalLabel").html("New List Item");
@@ -49,7 +59,7 @@ $(document).ready(function() {
 	//MODAL VALIDATION
 
 		//Modal Title Validation
-		$("#list_title_entry").focus(function() {
+		$("#list_title").focus(function() {
 			
 			if($(this).val().length == 0) {
 				$("#title_error").show();
@@ -70,27 +80,27 @@ $(document).ready(function() {
 		});
 
 		//Modal Body Text Validation
-		$("#list_text_entry").focus(function() {
+		// $("#list_text_entry").focus(function() {
 			
-			if($(this).val().length == 0) {
-				$("#body_error").show();
-				//add_item_text_enabled = false;
-			} 
+		// 	if($(this).val().length == 0) {
+		// 		$("#body_error").show();
+		// 		//add_item_text_enabled = false;
+		// 	} 
 
-			$(this).keyup(function() {
-				var entry = $(this).val();
+		// 	$(this).keyup(function() {
+		// 		var entry = $(this).val();
 
-				if(entry.length > 0) {
-					$("#body_error").hide();
-					add_item_text_enabled = true;
-				} else {
-					$("#body_error").show();
-					add_item_text_enabled = false;
-				}
-			})
+		// 		if(entry.length > 0) {
+		// 			$("#body_error").hide();
+		// 			add_item_text_enabled = true;
+		// 		} else {
+		// 			$("#body_error").show();
+		// 			add_item_text_enabled = false;
+		// 		}
+		// 	})
 
 			
-		});
+		// });
 
 		
 		//ADD NEW ITEM
@@ -98,13 +108,13 @@ $(document).ready(function() {
 		$("#add_item").click(function() {
 			
 			//Button click will only function if validation has passed for both text input fields
-			if(add_item_title_enabled && add_item_text_enabled) {
+			if(add_item_title_enabled ) { //&& add_item_text_enabled
 				
 				//If the edit button of a list item was just selected
 				if(edit_clicked == true) {
 					
 					//Make the modal content that of the existing element
-					var new_title_entered = $('#list_title_entry').val();
+					var new_title_entered = $('#list_title').val();
 						
 					var new_text_entered = $('#list_text_entry').val();
 					
@@ -119,7 +129,7 @@ $(document).ready(function() {
 
 					//Reset Variables after close
 					$("#myModal").modal('hide');
-					$("#list_title_entry").val('');
+					$("#list_title").val('');
 					$("#list_text_entry").val('');
 
 					$("#add_item").html("Add Item");
@@ -136,32 +146,32 @@ $(document).ready(function() {
 				} else {
 
 					//get the validated input fields text and css color
-					var title_entered = $('#list_title_entry').val();
+					var title_entered = $('#list_title').val();
 						
 					var text_entered = $('#list_text_entry').val();
 
 					var bg_color = $(".modal-header").css("background-color");
 
 					//create a new div element and child divs
-					$("#list_item_holder").prepend("<div class='.col-md-12' id='new'></div>");
+					// $("#list_item_holder").prepend("<div class='.col-md-12' id='new'></div>");
 
-					$("#new").append("<div class='list_item_header' id='new_header'></div>");
-						$("#new_header").html(title_entered);
+					// $("#new").append("<div class='list_item_header' id='new_header'></div>");
+					// 	$("#new_header").html(title_entered);
 
-					$("#new").append("<div class='list_item_body' id='new_body'>text</div>");
-						$("#new_body").html(text_entered);
+					// $("#new").append("<div class='list_item_body' id='new_body'>text</div>");
+					// 	$("#new_body").html(text_entered);
 					
-					$("#new").append("<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#myModal' id='new_edit_button'></div>");
-						$("#new_edit_button").html("Edit");
+					// $("#new").append("<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#myModal' id='new_edit_button'></div>");
+					// 	$("#new_edit_button").html("Edit");
 
-					$("#new").append("<button type='button' class='btn btn-sm' id='new_delete_button'></div>");
-						$("#new_delete_button").html("Delete");
+					// $("#new").append("<button type='button' class='btn btn-sm' id='new_delete_button'></div>");
+					// 	$("#new_delete_button").html("Delete");
 
-					$("#new").css("background-color", bg_color);
+					// $("#new").css("background-color", bg_color);
 					
 					//reset variables on close of modal
 					$("#myModal").modal('hide');
-					$("#list_title_entry").val('');
+					$("#list_title").val('');
 					$("#list_text_entry").val('');
 
 					add_item_title_enabled = false;
@@ -227,7 +237,7 @@ $(document).ready(function() {
 
 			//Get the current header content and place into modal
 			header_content = $(this).prev().prev().html();
-			$("#list_title_entry").val(header_content);
+			$("#list_title").val(header_content);
 			
 			//Get and place current body content into modal
 			body_content = $(this).prev().html();
@@ -249,5 +259,13 @@ $(document).ready(function() {
 		$(".btn-primary").click(function(){
 			$(".modal-header").css("background-color", $(this).css("background-color"));
 		})
+
+
+
+            // bind 'myForm' and provide a simple callback function 
+            $('#myForm').ajaxForm(function() { 
+                alert("Thank you for your comment!"); 
+            }); 
+         
 
 });

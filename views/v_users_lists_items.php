@@ -1,15 +1,15 @@
-  <div class="container">
-<h1>This is v_users_lists</h1>
+ <div class="container">
+<h1>This is v_users_lists_items</h1>
 	     
 		        <p class="lead">Add, edit, style, and sort list items to create a working open items list, to-do list, or brief agenda.</p>
 		        
 				<!-- Button trigger modal -->
 					<button class="btn btn-primary btn-lg" id="main_add" data-toggle="modal" data-target="#myModal">
-						Add New List
+						Add New List Item
 					</button>
 
 					<!-- Modal -->
-				<form id="add_list_form" method='POST' action='/lists/p_add'>
+				<form id="add__form" method='POST' action='/lists/items/p_add'>
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -71,20 +71,20 @@
 
 
 				<div id="list_item_holder">
-					<div id="ajax_result">
-                    </div>
-				    
-				    <?php foreach ($lists as $list): ?>
-				        <div class='.col-md-12' id='new'>
+					<?php foreach ($lists as $list): ?>
+				   	
+						<div class='.col-md-12' id='new'>
 
-				            <div class='list_item_header' id='new_header'><?=$list['list_title_entry']?></div>
-				                
-				            <button type='button' class='btn btn-sm' data-toggle='modal' data-target='#myModal' id='new_edit_button'>Edit</button>
-				            
-				            <button type='button' class='btn btn-sm' id='new_delete_button'>Delete</button>
-				                            
-				        </div>
-				     <?php endforeach; ?>
+							<div class='list_item_header' id='new_header'><?=$list['list_title_entry']?> Test</div>
+								
+							<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#myModal' id='new_edit_button'>Edit</button>
+							
+							<button type='button' class='btn btn-sm' id='new_delete_button'>Delete</button>
+											
+						</div>
+						
+				   	<?php endforeach; ?>
+
 				</div>
 
 

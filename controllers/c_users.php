@@ -165,6 +165,8 @@ class users_controller extends base_controller {
 
 	}
 
+
+
 	public function lists($error = NULL) {
 
 		if(!$this->user) {
@@ -174,60 +176,24 @@ class users_controller extends base_controller {
 		$this->template->content = View::instance('v_users_lists');
 
 		//This person's profile and name
-			$this->template->title = "Profile of ".$this->user->first_name;
+		$this->template->title = "Profile of ".$this->user->first_name;
 
-		// //This person's bio
-		// 	$bioQ = "SELECT bios.content
-		// 		FROM bios
-		// 		WHERE bios.user_id = ".$this->user->user_id;
+		//This person's bio
+		$listsQ = "SELECT list_title_entry
+				FROM lists
+				WHERE lists.user_id = ".$this->user->user_id;
 
-		// 	$bios = DB::instance(DB_NAME)->select_rows($bioQ);
+		$lists = DB::instance(DB_NAME)->select_rows($listsQ);
 
-		// 	$this->template->content->bios = $bios;
+		$this->template->content->lists = $lists;
 
-		// //This person's profile picture
-
-		// 	$picQ = "SELECT profilePics.picture
-		// 		FROM profilePics
-		// 		WHERE profilePics.user_id = ".$this->user->user_id;
-
-		// 	$pics = DB::instance(DB_NAME)->select_rows($picQ);
-
-		// 	$this->template->content->pics = $pics;
-
-			
-		//Show selected posts from people the user is following.
-		//Join together user pic from those people.
-		//Order the posts descending by time created so that most recent is on top
-
-			// $postsQ = 'SELECT
-			// 	posts.content,
-			// 	posts.created,
-			// 	posts.user_id AS post_user_id,
-			// 	users_users.user_id AS follower_id,
-			// 	users.first_name,
-			// 	users.last_name,
-			// 	profilePics.picture
-			// FROM posts
-			// INNER JOIN users_users
-			// 	ON posts.user_id = users_users.user_id_followed
-			// INNER JOIN users
-			// 	ON posts.user_id = users.user_id
-			// INNER JOIN profilePics
-			// 	ON profilePics.user_id = posts.user_id
-			// WHERE users_users.user_id = '.$this->user->user_id .'
-			// ORDER BY posts.created DESC';
-
-			// $posts = DB::instance(DB_NAME)->select_rows($postsQ);
-
-			// $this->template->content->posts = $posts;
-
-		
+				
 		echo $this->template;
 			
 		
 	}
 
+	
 
 }
 
