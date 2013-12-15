@@ -90,9 +90,9 @@
 
 /*NEWLY CREATED LIST ELEMENTS------------------------------*/
 
-    #new, [id*="new_holder"] {
+    /*#new, [id*="new_holder"] {
       border-radius: 5px;
-    }
+    }*/
 
     [class*="col-"] {
       padding-top: 5px;
@@ -101,7 +101,7 @@
       margin-top: 5px;
       margin-bottom: 5px;
       width: 100%;
-      
+       border-radius: 5px;
       border: 1px solid #ddd;
       background-color: rgba(86,61,124,.15);
       border: 1px solid rgba(86,61,124,.2);

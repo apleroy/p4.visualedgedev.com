@@ -187,7 +187,41 @@ $(document).ready(function() {
 
 
 
+	//DELETE ITEM
 	
+		//Get to the parent and delete it and all children
+		$( "#list_item_holder" ).on( "click", "#new_delete_button", function() {
+		  	//$(this).parent().remove();
+		  	var element = $(this).parent();
+		  	var element_id= $(this).parent().attr("id");
+		  	//alert(id);
+		  	
+
+		  	$.ajax({
+			    type: "POST",
+			    url: '/users/p_deletelist/',
+			    data: { id: element_id },
+			    success: function(data){
+	                 if(data=="YES"){
+	                    element.remove();
+	                 }else{
+	                        alert("can't delete the row")
+	                 }
+	             }
+
+	        });
+
+			// request.done(function( msg ) {
+			//   $( "#list_item_holder" ).html( element_id );
+			// });
+		  	//decrease counter for tracking
+		  // 	counter--;
+		  // 		if( counter == 0 ) {
+				// 	$("#empty_placeholder").show();
+				// } else {
+				// 	$("#empty_placeholder").hide();
+				// }
+		});	
 	
 
 	//EDIT ITEM

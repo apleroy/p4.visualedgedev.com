@@ -2,7 +2,7 @@ var options = {
     type: 'POST',
     url: '/users/p_addlist/',
     success: function(response) {   
-        $('#ajax_result').prepend(response);
+        $('#list_item_holder').prepend(response);
     } 
 }; 
 

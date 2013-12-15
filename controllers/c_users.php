@@ -184,16 +184,17 @@ class users_controller extends base_controller {
 
     	$this->template->client_files_head = Utils::load_client_files($client_files_head); 
 
-		//This person's bio
-		$listsQ = "SELECT list_title_entry
-				FROM lists
-				WHERE lists.user_id = ".$this->user->user_id;
+		//list title, id
+			$listsQ = "SELECT *
+					FROM lists
+					WHERE lists.user_id = ".$this->user->user_id;
 
-		$lists = DB::instance(DB_NAME)->select_rows($listsQ);
+			$lists = DB::instance(DB_NAME)->select_rows($listsQ);
 
-		$this->template->content->lists = $lists;
+			$this->template->content->lists = $lists;
 
-				
+		
+
 		echo $this->template;
 			
 		
@@ -205,7 +206,9 @@ class users_controller extends base_controller {
 
 		$client_files_head = Array(
 	        "/js/jquery.form.js",
-	        "/js/users_lists_add.js"
+	        "/js/users_lists_add.js",
+	        "/js/users_lists_delete.js",
+	        "/js/users_lists_sort.js"
     	);
 
     	$this->template->client_files_head = Utils::load_client_files($client_files_head);   
@@ -256,7 +259,8 @@ class users_controller extends base_controller {
 		$client_files_head = Array(
 	        "/js/jquery.form.js",
 	        "/js/users_lists_add.js",
-	        "/js/users_lists_delete.js"
+	        "/js/users_lists_delete.js",
+	        "/js/users_lists_sort.js"
     	);
 
     	$this->template->client_files_head = Utils::load_client_files($client_files_head);   
@@ -269,26 +273,60 @@ class users_controller extends base_controller {
 
 	public function p_deletelist() {
 
-		$q = "SELECT list_id
-				FROM lists
-	        	WHERE lists.user_id = ".$this->user->user_id;
-	        	;		
+		$data = $_POST['id'];
+		$delete_query = "DELETE FROM lists WHERE list_id = '$data'";
 
-	      
+		$result = DB::instance(DB_NAME)->delete('lists', "WHERE list_id = '$data'");
+
+		if(isset($result)) {
+		   echo "YES";
+		} else {
+		   echo "NO";
+		}
+	  
 	    # Set up the view
-	    $view = View::instance('v_users_lists_p_delete');
+	    //$view = View::instance('v_users_lists_p_delete');
 
-	    // # Pass data to the view
-	    // $view->created     = $_POST['created'];
-	    // $view->list_title_entry = $_POST['list_title_entry'];
-	    // $view->new_post_id = $new_post_id;
+	    # Pass data to the view
+	   
 
 	    # Render the view
-	    echo $view;     
+	   // echo $view;     
+		//DB::instance(DB_NAME)->delete('users', "WHERE email = 'sam@whitehouse.gov'");
+
+
+		// $q = "SELECT list_id
+		// 		FROM lists
+	 //        	WHERE list_id = id;
+	 //        	";		
+
+	    
+
+	    // # Set up the view
+	    // $view = View::instance('v_users_lists_p_delete');
+
+	    // // # Pass data to the view
+	    // // $view->created     = $_POST['created'];
+	    // // $view->list_title_entry = $_POST['list_title_entry'];
+	    // // $view->new_post_id = $new_post_id;
+
+	    // # Render the view
+	    // echo $view;     
 
 
 	}
 
+	public function p_sortlist() {
+
+		// $query = 'SELECT * 
+		// 			FROM lists
+		// 			WHERE lists.user_id = '.$this->user->user_id .'
+		// 			ORDER BY sort_order ASC';
+		
+		// $result = DB::instance(DB_NAME)->select_rows($query);
+
+		
+	}
 
 
 }

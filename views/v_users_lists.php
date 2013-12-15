@@ -75,7 +75,8 @@
                     </div>
 				    
 				    <?php foreach ($lists as $list): ?>
-				        <div class='.col-md-12' id='new'>
+
+				        <div class='.col-md-12' id="<?=$list['list_id']?>">
 
 				            <div class='list_item_header' id='new_header'><?=$list['list_title_entry']?></div>
 				                
