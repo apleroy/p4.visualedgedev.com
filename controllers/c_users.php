@@ -284,34 +284,32 @@ class users_controller extends base_controller {
 		   echo "NO";
 		}
 	  
-	    # Set up the view
-	    //$view = View::instance('v_users_lists_p_delete');
-
-	    # Pass data to the view
 	   
+	}
 
-	    # Render the view
-	   // echo $view;     
-		//DB::instance(DB_NAME)->delete('users', "WHERE email = 'sam@whitehouse.gov'");
+	public function editlist() {
 
+		$this->template->content = View::instance('v_users_lists_edit');
 
-		// $q = "SELECT list_id
-		// 		FROM lists
-	 //        	WHERE list_id = id;
-	 //        	";		
+		$client_files_head = Array(
+	        "/js/jquery.form.js",
+	        "/js/users_lists_add.js",
+	        "/js/users_lists_delete.js",
+	        "/js/users_lists_sort.js"
+    	);
 
-	    
+    	$this->template->client_files_head = Utils::load_client_files($client_files_head);   
+			
+		echo $this->template;
 
-	    // # Set up the view
-	    // $view = View::instance('v_users_lists_p_delete');
+	}
 
-	    // // # Pass data to the view
-	    // // $view->created     = $_POST['created'];
-	    // // $view->list_title_entry = $_POST['list_title_entry'];
-	    // // $view->new_post_id = $new_post_id;
+	public function p_editlist() {
 
-	    // # Render the view
-	    // echo $view;     
+		//get the text after the "add/edit" button is pressed in the modal
+		//find the row equal to the ellement id
+		//replace the list_title_entry in lists with the new text
+		//display result?  already done through js?
 
 
 	}
