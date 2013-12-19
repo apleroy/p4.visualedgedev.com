@@ -221,29 +221,34 @@ class users_controller extends base_controller {
 
 	public function p_addlist() {
 
-		$_POST['user_id'] = $this->user->user_id;
+		
 
-		$_POST['created'] = Time::now();
-
-		$_POST['modified'] = Time::now();
+		$title_from_ajax = $_POST['title'];
 
 		
+
+		$data = Array('list_title_entry' => $title_from_ajax,
+						'user_id' => $this->user->user_id,
+						'created' => Time::now(),
+						'modified' => Time::now()
+				);
+		
+
 		//error check to prevent blank post
-		if(empty($_POST['list_title_entry'])) {
+		//if(empty($_POST['list_title_entry'])) {
 			
 			//Router::redirect("/lists/add/error");
 		
-		}
+		//}
 
-	    $new_post_id = DB::instance(DB_NAME)->insert('lists',$_POST);
-
+	   	$new_post_id = DB::instance(DB_NAME)->insert('lists', $data);
 	  
 	    # Set up the view
 	    $view = View::instance('v_users_lists_p_add');
 
 	    # Pass data to the view
-	    $view->created     = $_POST['created'];
-	    $view->list_title_entry = $_POST['list_title_entry'];
+	    //$view->created     = $_POST['created'];
+	    $view->list_title_entry = $title_from_ajax;
 	    $view->new_post_id = $new_post_id;
 
 	    # Render the view
@@ -274,7 +279,7 @@ class users_controller extends base_controller {
 	public function p_deletelist() {
 
 		$data = $_POST['id'];
-		$delete_query = "DELETE FROM lists WHERE list_id = '$data'";
+		//$delete_query = "DELETE FROM lists WHERE list_id = '$data'";
 
 		$result = DB::instance(DB_NAME)->delete('lists', "WHERE list_id = '$data'");
 
@@ -310,7 +315,8 @@ class users_controller extends base_controller {
 		//find the row equal to the ellement id
 		//replace the list_title_entry in lists with the new text
 		//display result?  already done through js?
-
+		// $data = Array("first_name" => "John");
+		// DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = 56");
 
 	}
 

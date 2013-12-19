@@ -1,6 +1,6 @@
 //Global variables
 
-	var edit_clicked = false; //boolean flag
+	var edit_clicked; //boolean flag
 	var current_div = '';
 	var header_content = '';
 	var body_content = '';
@@ -70,47 +70,77 @@ $(document).ready(function() {
 		});
 
 				
-		//EDIT ITEM
+		//ADD EDIT ITEM
 		
-		// $("#add_item").click(function() {
+		$("#add_list").click(function() {
 			
-		// 	//Button click will only function if validation has passed for both text input fields
-		// 	if(add_item_title_enabled ) { //&& add_item_text_enabled
+			
+		
+
+	   		//Button click will only function if validation has passed for both text input fields
+		 	//if(add_item_title_enabled ) { //&& add_item_text_enabled
 				
-		// 		//If the edit button of a list item was just selected
-		// 		if(edit_clicked == true) {
+		 		//If the edit button of a list item was just selected
+		 		
+		 		if(edit_clicked == true) {
 					
-		// 			//Make the modal content that of the existing element
-		// 			var new_title_entered = $('#list_title').val();
+					alert("Edit was clicked");
+		 			//Make the modal content that of the existing element
+		 			//var new_title_entered = $('#list_title').val();
 		// 			var new_bg_color = $(".modal-header").css("background-color");
 					
-		// 			//Make changes to existing element on close					
+		 			//Make changes to existing element on close					
 		// 			$(current_div).css("background-color", new_bg_color);
-		// 			$(current_header).html(new_title_entered);
+		 			//$(current_header).html(new_title_entered);
 					
 		// 			//Reset Variables after close
 		// 			$("#myModal").modal('hide');
 		// 			$("#list_title").val('');
 		// 			//$("#list_text_entry").val('');
 
-		// 			$("#add_item").html("Add Item");
+		 			//$("#add_item").html("EDIT LIST");
 		// 			$("#myModalLabel").html("New List Item");
 		// 			edit_clicked = false;
 		// 			add_item_title_enabled = false;
 					
 		// 			$("#title_error").show();
 					
-					
+				} else {
+		//alert("Test");
+
+		
 		// 		//If the add item button was clicked after launching a new item,
 		// 		} else {
 
 		// 			//get the validated input fields text and css color
 		// 			var title_entered = $('#list_title').val();
 						
-		// 			var text_entered = $('#list_text_entry').val();
+		 			var text_entered = $('#list_title').val();
+
+		 			//alert(text_entered);
 
 		// 			var bg_color = $(".modal-header").css("background-color");
 
+					//method='POST' action='/users/p_addlist'>
+					$.ajax({
+			    		type: "POST",
+			    		url: '/users/p_addlist/',
+			    		data: { title: text_entered },
+			    		success: function(data) {   
+					         $('#list_item_holder').prepend(data);
+					    } 
+			       	});
+
+	    //     		var options = { 
+					//     type: 'POST',
+					//     url: '/users/p_addlist/',
+					//     // success: function(response) {   
+					//     //     $('#list_item_holder').prepend(response);
+					//     // } 
+					// }; 
+
+					// Using the above options, ajax'ify the form
+					//$('#add_list_form').ajaxForm(options);
 						
 		// 			//reset variables on close of modal
 		// 			$("#myModal").modal('hide');
@@ -124,9 +154,10 @@ $(document).ready(function() {
 					
 		// 		}
 
-		// 	}
-		// });
-	
+//		 	}
+			//alert("regular add");
+		}
+	});
 		
 
 
@@ -168,7 +199,7 @@ $(document).ready(function() {
 			edit_clicked = true;
 			add_item_title_enabled = true;
 
-			$("#add_item").html("Edit");
+			$("#add_list").val("Edit");
 			$("#myModalLabel").html("Edit List");
 				
 			$("#title_error").hide();
@@ -228,21 +259,21 @@ $(document).ready(function() {
 			// 	current_header = $(this).prev().prev().attr('id', 'new_header' + unique);
 		  	
 
-		});
+		
 
 	
 	//Modify CSS BG for MODAL
 	
-		$(".btn-primary").click(function(){
-			$(".modal-header").css("background-color", $(this).css("background-color"));
-		})
+		//$(".btn-primary").click(function(){
+		//	$(".modal-header").css("background-color", $(this).css("background-color"));
+		//})
 
 
 
             // bind 'myForm' and provide a simple callback function 
-            $('#myForm').ajaxForm(function() { 
-                alert("Thank you for your comment!"); 
-            }); 
+            //$('#myForm').ajaxForm(function() { 
+              //  alert("Thank you for your comment!"); 
+            //}); 
          
 
 });

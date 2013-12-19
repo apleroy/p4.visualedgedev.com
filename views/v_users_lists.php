@@ -9,7 +9,7 @@
 					</button>
 
 					<!-- Modal -->
-				<form id="add_list_form" method='POST' action='/users/p_addlist'>
+				<!-- <form id="add_list_form" method='POST' action='/users/p_addlist'> -->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -67,8 +67,8 @@
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
 					</div><!-- /.modal -->
-				</form>
-
+				<!-- </form>
+ -->
 
 				<div id="list_item_holder">
 					<div id="ajax_result">
