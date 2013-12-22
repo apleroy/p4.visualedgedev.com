@@ -30,24 +30,83 @@
 <body>
 
 <!-- Part 1: Wrap all page content here -->
-      <div id="wrap">
+      <!-- <div id="wrap"> -->
 
        
 
       <?php if($user): ?>
+      <div id="wrap">
+            <div class="navbar navbar-inverse" role="navigation">
+                        <div class="container">
+                          <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="/">Task Master</a>
+                          </div>
+                          <div class="navbar-collapse collapse">
+                            
 
-            <div class="navigation"> 
-                <div class = "logo">LIST GENERATOR</div>
-              
-                  <div class = "navigation_links">
-                    <li><a href='/users/lists'>LISTS</a></li>
-                    <li><a href='/users/logout'>LOGOUT</a></li>
-                  </div>
-            
-            </div>         
+                           
+                         
+                          <ul class="nav navbar-nav navbar-right">
+                            <li><a href='/users/lists'>Lists</a></li>
+                            <li><a href='/users/logout'>Logout</a></li>
+                            
+                          </ul>
 
-   	  <?php endif; ?>	
-        
+                          </div><!--/.navbar-collapse -->
+                        </div>
+                      </div>
+           
+
+   	 <?php else: ?>
+     <div id="wrap1">
+                   <div class="navbar navbar-inverse" role="navigation">
+                        <div class="container">
+                          <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="/">Task Master</a>
+                          </div>
+                          <div class="navbar-collapse collapse">
+
+                            <form class="navbar-form navbar-right" role="form" method='POST' action='/users/p_login'>
+                              <div class="form-group">
+                                <input type="text" placeholder="Email" class="form-control" name='email'>
+                              </div>
+                              <div class="form-group">
+                                <input type="password" placeholder="Password" class="form-control" name='password'>
+                              </div>
+                              <button type="submit" class="btn btn-success">Sign in</button>
+
+                            </form>
+
+                          </div><!--/.navbar-collapse -->
+                        </div>
+                      </div>
+
+         <?php endif; ?>  
+                      <!-- <form id="login_form" method='POST' action='/users/p_login'>
+                        Email<input type='text' name='email'>
+                        Password<input type='password' name='password'>
+                        <input type='submit' id="submit" value='Log In'>
+
+                        <?php if(isset($error)): ?>
+                          <div class='error'>
+                              Login failed. Please double check your email and password.
+                          </div>
+                          <br>
+                        <?php endif; ?>
+                      </form> -->
+
          <!-- Begin page content -->
       
           

@@ -1,4 +1,4 @@
-.navigation {
+/*.navigation1 {
   width: 100%;
   height: 60px;
   background-color: #2F363E;
@@ -56,7 +56,7 @@
         padding: 5px;
         border-bottom: solid 2px #0099ff;
       }
-
+*/
 .error {
   color: red;
 }
@@ -64,7 +64,11 @@
 /*INDEX PAGE ELEMENTS----------------------------------------*/
   
   .container {
-    max-width: 760px;
+    /*max-width: 760px;
+    margin: auto;*/
+    /*background-image: url('/writers-block.jpg');
+        background-size: 100% 100%;*/
+
   }
 
   .input_holder {
@@ -219,6 +223,22 @@ html,
         
         margin: 0 auto;
         background-color: gray;
+        /*background-image: url('/writers-block.jpg');
+        background-size: 100% 100%;*/
+      }
+
+       #wrap1 {
+        min-height: 90%;
+        height: auto !important;
+        height: 90%;
+        
+        margin: 0 auto;
+        background-color: gray;
+        background-image: url('/todolist.jpg');
+        background-size: 80% 70%;
+        background-repeat:no-repeat;
+        background-position:center;
+
       }
 
       /* Set the fixed height of the footer here */

@@ -1,1 +1,0 @@
-<div class='.col-md-12'>Item should have been deleted</div>

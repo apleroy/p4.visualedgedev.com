@@ -184,10 +184,12 @@ class users_controller extends base_controller {
 
     	$this->template->client_files_head = Utils::load_client_files($client_files_head); 
 
-		//list title, id
-			$listsQ = "SELECT *
+		
+			$listsQ = 'SELECT *
 					FROM lists
-					WHERE lists.user_id = ".$this->user->user_id;
+					WHERE lists.user_id = '.$this->user->user_id .'
+					ORDER BY sort_order ASC';
+					
 
 			$lists = DB::instance(DB_NAME)->select_rows($listsQ);
 
@@ -221,11 +223,7 @@ class users_controller extends base_controller {
 
 	public function p_addlist() {
 
-		
-
 		$title_from_ajax = $_POST['title'];
-
-		
 
 		$data = Array('list_title_entry' => $title_from_ajax,
 						'user_id' => $this->user->user_id,
@@ -278,7 +276,11 @@ class users_controller extends base_controller {
 
 	public function p_deletelist() {
 
-		$data = $_POST['id'];
+		$data1 = $_POST['id'];
+
+		$pos = strpos($data1, '_');
+
+		$data = substr($data1, $pos + 1); //strip the list_ used in the serialize
 		//$delete_query = "DELETE FROM lists WHERE list_id = '$data'";
 
 		$result = DB::instance(DB_NAME)->delete('lists', "WHERE list_id = '$data'");
@@ -311,16 +313,71 @@ class users_controller extends base_controller {
 
 	public function p_editlist() {
 
+		$data1 = $_POST['id'];
+
+			$pos = strpos($data1, '_');
+
+			$id_data = substr($data1, $pos + 1); //strip the list_ used in the serialize
+
+		$text_data = $_POST['text'];
+
+
+
 		//get the text after the "add/edit" button is pressed in the modal
 		//find the row equal to the ellement id
 		//replace the list_title_entry in lists with the new text
 		//display result?  already done through js?
-		// $data = Array("first_name" => "John");
-		// DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = 56");
+		
+		$data = Array("list_title_entry" => $text_data);
+		$result = DB::instance(DB_NAME)->update('lists', $data, "WHERE list_id = '$id_data'");
+
+		if(isset($result)) {
+		   echo "YES";
+		} else {
+		   echo "NO";
+		}
 
 	}
 
+	public function sortlist() {
+
+		$this->template->content = View::instance('v_users_lists_sort');
+
+		$client_files_head = Array(
+	        "/js/jquery.form.js",
+	        "/js/users_lists_add.js",
+	        "/js/users_lists_delete.js",
+	        "/js/users_lists_sort.js"
+    	);
+
+    	$this->template->client_files_head = Utils::load_client_files($client_files_head);   
+			
+		echo $this->template;
+
+	}
 	public function p_sortlist() {
+
+		
+		//DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = 56");
+		$i = 0;
+
+		$array = unserialize($_POST['test']);
+
+		//print_r($array);
+		//echo $array[0];
+		foreach($array as &$value) {
+
+			//$data = Array('sort_order' => $i);
+			
+			DB::instance(DB_NAME)->update('lists', "'sort_order' => $i", "WHERE list_id = '$value'");
+			
+			$i++;
+		
+		}
+
+		//echo $data;
+
+		//echo $data;
 
 		// $query = 'SELECT * 
 		// 			FROM lists

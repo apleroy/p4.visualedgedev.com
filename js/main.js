@@ -3,11 +3,45 @@
 	var edit_clicked; //boolean flag
 	var current_div = '';
 	var header_content = '';
-	var body_content = '';
+	
+	var element ='';
+	var element_id = ''; //get the id off the page
+	var text_entered = ''; //get text off page
+
 	var add_item_title_enabled; //boolean flag
 	var add_item_text_enabled;	//boolean flag
 	var counter = 0; //counts addition and deletion of new items (controls placeholder default text)
 
+
+
+	function edit(el_id, new_text) {
+
+		$.ajax({
+		    type: "POST",
+		    url: '/users/p_editlist/',
+		    data: { id: el_id, text: new_text },
+		    success: function(data){
+                 if(data=="YES"){
+                    //alert(new_text);
+                    //element.child().html(new_text);
+                 }else{
+                    alert("NOT EDITED");
+                 }
+             }
+        });
+	}
+
+	function reorder() {
+
+		var ser = $('#list_item_holder').sortable('serialize');
+		//$('#TEST').append(ser);
+
+		$.ajax({
+			type: "POST",
+			url: '/test/p_sortlist/',
+			data: { test: ser }
+		});
+	}
 
 //Main
 
@@ -17,7 +51,24 @@ $(document).ready(function() {
 
 	//DRAG AND DROP
 	
-	    $( "#list_item_holder" ).sortable();
+	    $( "#list_item_holder" ).sortable({
+	    	cursor: 'move',
+	    	axis: 'y',
+	    	update: function() {
+	    		var ser = $(this).sortable('serialize');
+	    		//$('#TEST').append(ser);
+
+	    		$.ajax({
+	    			type: "POST",
+	    			url: '/test/p_sortlist/',
+	    			data: { test: ser }
+	    		});
+
+	    	}
+
+		});
+
+
 	    $( "#list_item_holder" ).disableSelection();
 	
 	//MODAL
@@ -34,7 +85,7 @@ $(document).ready(function() {
 
 				$("#list_title").val('');
 				$("#list_text_entry").val('');
-				$("#add_item").html("Add Item");
+				$("#add_list").html("Add Item");
 				$("#myModalLabel").html("New List");
 				
 				edit_clicked = false;
@@ -70,58 +121,29 @@ $(document).ready(function() {
 		});
 
 				
-		//ADD EDIT ITEM
+		//ADD & EDIT ITEM
 		
 		$("#add_list").click(function() {
 			
-			
-		
-
+	   		text_entered = $('#list_title').val();
 	   		//Button click will only function if validation has passed for both text input fields
-		 	//if(add_item_title_enabled ) { //&& add_item_text_enabled
+		 	if(add_item_title_enabled ) { //&& add_item_text_enabled
 				
 		 		//If the edit button of a list item was just selected
 		 		
 		 		if(edit_clicked == true) {
 					
-					alert("Edit was clicked");
-		 			//Make the modal content that of the existing element
-		 			//var new_title_entered = $('#list_title').val();
-		// 			var new_bg_color = $(".modal-header").css("background-color");
 					
-		 			//Make changes to existing element on close					
-		// 			$(current_div).css("background-color", new_bg_color);
-		 			//$(current_header).html(new_title_entered);
-					
-		// 			//Reset Variables after close
-		// 			$("#myModal").modal('hide');
-		// 			$("#list_title").val('');
-		// 			//$("#list_text_entry").val('');
+					edit(element_id, text_entered);
+					element.children().first().html(text_entered);//child().html(new_text);
 
-		 			//$("#add_item").html("EDIT LIST");
-		// 			$("#myModalLabel").html("New List Item");
-		// 			edit_clicked = false;
-		// 			add_item_title_enabled = false;
+					//reset variables on close of modal
+					$("#myModal").modal('hide');
 					
-		// 			$("#title_error").show();
-					
+
+							
 				} else {
-		//alert("Test");
-
 		
-		// 		//If the add item button was clicked after launching a new item,
-		// 		} else {
-
-		// 			//get the validated input fields text and css color
-		// 			var title_entered = $('#list_title').val();
-						
-		 			var text_entered = $('#list_title').val();
-
-		 			//alert(text_entered);
-
-		// 			var bg_color = $(".modal-header").css("background-color");
-
-					//method='POST' action='/users/p_addlist'>
 					$.ajax({
 			    		type: "POST",
 			    		url: '/users/p_addlist/',
@@ -131,33 +153,15 @@ $(document).ready(function() {
 					    } 
 			       	});
 
-	    //     		var options = { 
-					//     type: 'POST',
-					//     url: '/users/p_addlist/',
-					//     // success: function(response) {   
-					//     //     $('#list_item_holder').prepend(response);
-					//     // } 
-					// }; 
+	    		$("#myModal").modal('hide');
 
-					// Using the above options, ajax'ify the form
-					//$('#add_list_form').ajaxForm(options);
-						
-		// 			//reset variables on close of modal
-		// 			$("#myModal").modal('hide');
-		// 			$("#list_title").val('');
-					
-		// 			add_item_title_enabled = false;
-										
-		// 			$("#title_error").show();
-					
-		// 			//increase counter on addition (to track default empty content)
-					
-		// 		}
 
-//		 	}
-			//alert("regular add");
-		}
-	});
+
+				}
+			}
+
+			reorder();
+		});
 		
 
 
@@ -167,8 +171,8 @@ $(document).ready(function() {
 		//Get to the parent and delete it and all children
 		$( "#list_item_holder" ).on( "click", "#new_delete_button", function() {
 		  
-		  	var element = $(this).parent();
-		  	var element_id= $(this).parent().attr("id");
+		  	element = $(this).parent();
+		  	element_id= $(this).parent().attr("id");
 		  	
 		  	$.ajax({
 			    type: "POST",
@@ -184,10 +188,8 @@ $(document).ready(function() {
 
 	        });
 
-			// request.done(function( msg ) {
-			//   $( "#list_item_holder" ).html( element_id );
-			// });
-		  	
+		  	reorder();
+					  	
 		});	
 	
 
@@ -196,6 +198,10 @@ $(document).ready(function() {
 		
 		$( "#list_item_holder" ).on( "click", "#new_edit_button", function() {
 		  	
+			element = $(this).parent();
+			element_id= $(this).parent().attr("id");
+		  	//var element_id= $(this).parent().attr("id");
+
 			edit_clicked = true;
 			add_item_title_enabled = true;
 
@@ -210,57 +216,15 @@ $(document).ready(function() {
 			header_content = $(this).prev().html();
 			$("#list_title").val(header_content);
 
-				var changed_title = $(this).prev().text();
-			  	var element_id= $(this).parent().attr("id");
+			var changed_title = $(this).prev().text();
 			  	
-			  	alert(changed_title);
-			  	// $.ajax({
-				  //   type: "POST",
-				  //   url: '/users/p_editlist/',
-				  //   data: { id: element_id, text: changed_title },
-				  //   success: function(data){
-		    //              if(data=="YES"){
-		    //                 element.remove();
-		    //              }else{
-		    //                 alert("can't delete the row")
-		    //              }
-		    //          }
+			  	
 
 		});
 
 
 
-		 //  	//Boolean flag to signal the edit has been clicked
-			
-			// //add_item_text_enabled = true;
-			
-			// //Change the default settings to "edit"
-			
-
-			// //Hide the default error div
-			
-			// //$("#body_error").hide();
-			
-			// //Get the current css bg color to place in modal
-			
-
-			// //Get the current header content and place into modal
-			
-			
-			// //Get and place current body content into modal
-			// body_content = $(this).prev().html();
-			// $("#list_text_entry").val(body_content);
-
-			// //Make the div with the edit button selected unique 
-			// //by assigning the div and elements to unique based on time
-			// var unique = new Date().getTime();
-			// 	current_div = $(this).parent().attr('id', 'new_holder' + unique);
-			// 	current_body = $(this).prev().attr('id', 'new_body' + unique);
-			// 	current_header = $(this).prev().prev().attr('id', 'new_header' + unique);
-		  	
-
 		
-
 	
 	//Modify CSS BG for MODAL
 	
@@ -270,10 +234,5 @@ $(document).ready(function() {
 
 
 
-            // bind 'myForm' and provide a simple callback function 
-            //$('#myForm').ajaxForm(function() { 
-              //  alert("Thank you for your comment!"); 
-            //}); 
-         
 
 });

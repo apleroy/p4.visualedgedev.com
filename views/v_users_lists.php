@@ -69,14 +69,13 @@
 					</div><!-- /.modal -->
 				<!-- </form>
  -->
-
+ 				<!-- <div id="TEST">Hello</div> -->
 				<div id="list_item_holder">
-					<div id="ajax_result">
-                    </div>
-				    
+
 				    <?php foreach ($lists as $list): ?>
 
-				        <div class='.col-md-12' id="<?=$list['list_id']?>">
+				        <div class='.col-md-12' id="list_<?=$list['list_id']?>">
+
 
 				            <div class='list_item_header' id='new_header'><?=$list['list_title_entry']?></div>
 				                
@@ -87,6 +86,7 @@
 				        </div>
 				     <?php endforeach; ?>
 				</div>
+
 
 
 				   	<div id="empty_placeholder">
