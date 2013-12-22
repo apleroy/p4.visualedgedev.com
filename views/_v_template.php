@@ -6,9 +6,9 @@
 	<meta charset="UTF-8">	
 	
 	<!--Common CSS/JS -->
-	<!-- <link rel="stylesheet" href="/css/app.css" type="text/css"> -->
+	
   <link href="/css/bootstrap.css" rel="stylesheet">
-      <link href="/css/main.css" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
 
       
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -17,10 +17,8 @@
       <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"> -->
 
       <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="/js/bootstrap.js"></script>
-      <script src="/js/main.js"></script>
-      <script src="/js/signup_validation.js"></script>
-      <script src="/js/item.js"></script>
+      
+      
 
 	<!-- Controller Specific JS/CSS -->
 	<?php if(isset($client_files_head)) echo $client_files_head; ?>
@@ -32,13 +30,13 @@
 <body>
 
 <!-- Part 1: Wrap all page content here -->
-      <!-- <div id="wrap"> -->
+      
 
-        <div id="wrap">
+    <div id="wrap">
 
       <?php if($user): ?>
      
-            <div class="navbar navbar-inverse" role="navigation" id="my_nav">
+                    <div class="navbar navbar-inverse" role="navigation" id="my_nav">
                         <div class="container">
                           <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -65,9 +63,9 @@
                       </div>
            
 
-   	 <?php else: ?>
+   	  <?php else: ?>
 
-                   <div class="navbar navbar-inverse" role="navigation" id="my_nav">
+                    <div class="navbar navbar-inverse" role="navigation" id="my_nav">
                         <div class="container">
                           <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -89,6 +87,7 @@
                               </div>
                               <button type="submit" class="btn btn-success">Sign in</button>
 
+                              
                             </form>
 
                           </div><!--/.navbar-collapse -->
@@ -96,50 +95,36 @@
                       </div>
 
          <?php endif; ?>  
-                      <!-- <form id="login_form" method='POST' action='/users/p_login'>
-                        Email<input type='text' name='email'>
-                        Password<input type='password' name='password'>
-                        <input type='submit' id="submit" value='Log In'>
-
-                        <?php if(isset($error)): ?>
-                          <div class='error'>
-                              Login failed. Please double check your email and password.
-                          </div>
-                          <br>
-                        <?php endif; ?>
-                      </form> -->
-
+                    
          <!-- Begin page content -->
-      
+       
           
-          
-                      
-           <!--  <p class="lead">Add, edit, style, and sort list items to create a working open items list, to-do list, or brief agenda.</p> -->
-        <!-- <h1>Drag & Drop List Generator</h1> -->
-
         <?php if(isset($content)) echo $content; ?>
 
         <?php if(isset($client_files_body)) echo $client_files_body; ?>
 
        <!--end of container -->
           
-      </div> <!--end of wrap-->
+    </div> <!--end of wrap-->
 
       <!--push-->
-      <div id="push"></div>
+    <div id="push"></div>
       
       <!--Footer -->
-      <div id="footer">
+    <div id="footer">
         
           <h6>CSCI E-15 Dynamic Web Applications</h6>
           <h6>P4</h6>
           <h6>Andy LeRoy</h6>
         
-      </div>
+    </div>
                       
 	
 
 
 </body>
-
+      <script src="/js/bootstrap.js"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/signup_validation.js"></script>
+      <script src="/js/item.js"></script>
 </html>

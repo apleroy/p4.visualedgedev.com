@@ -10,7 +10,7 @@
 
 	var add_item_title_enabled; //boolean flag
 	var add_item_text_enabled;	//boolean flag
-	var counter = 0; //counts addition and deletion of new items (controls placeholder default text)
+	
 
 
 
@@ -22,8 +22,7 @@
 		    data: { id: el_id, text: new_text },
 		    success: function(data){
                  if(data=="YES"){
-                    //alert(new_text);
-                    //element.child().html(new_text);
+                    
                  }else{
                     alert("NOT EDITED");
                  }
@@ -34,8 +33,7 @@
 	function reorder() {
 
 		var ser = $('#list_item_holder').sortable('serialize');
-		//$('#TEST').append(ser);
-
+		
 		$.ajax({
 			type: "POST",
 			url: '/serial/p_sortlist/',
@@ -56,8 +54,7 @@ $(document).ready(function() {
 	    	axis: 'y',
 	    	update: function() {
 	    		var ser = $(this).sortable('serialize');
-	    		//$('#TEST').append(ser);
-
+	    		
 	    		$.ajax({
 	    			type: "POST",
 	    			url: '/serial/p_sortlist/',
@@ -85,15 +82,16 @@ $(document).ready(function() {
 
 				$("#list_title").val('');
 				$("#list_text_entry").val('');
-				$("#add_list").val("Add Item");
-				$("#myModalLabel").html("New List");
+				$("#add_list").val("Add Task");
+				$("#myModalLabel").html("New Task");
+
+				$("#task_modal_header").css("background-color", "");
 				
 				edit_clicked = false;
 				add_item_title_enabled = false;
-				//add_item_text_enabled = false;
-
+				
 				$("#title_error").show();
-				//$("#body_error").show();
+				
 			});
 
 
@@ -127,7 +125,7 @@ $(document).ready(function() {
 			
 	   		text_entered = $('#list_title').val();
 	   		//Button click will only function if validation has passed for both text input fields
-		 	if(add_item_title_enabled ) { //&& add_item_text_enabled
+		 	if(add_item_title_enabled ) { 
 				
 		 		//If the edit button of a list item was just selected
 		 		
@@ -135,10 +133,11 @@ $(document).ready(function() {
 					
 					
 					edit(element_id, text_entered);
-					element.children().first().html(text_entered);//child().html(new_text);
+					element.children().first().html(text_entered);
 
 					//reset variables on close of modal
 					$("#myModal").modal('hide');
+					reorder();
 					
 
 							
@@ -150,17 +149,17 @@ $(document).ready(function() {
 			    		data: { title: text_entered },
 			    		success: function(data) {   
 					         $('#list_item_holder').prepend(data);
+					         reorder();
 					    } 
 			       	});
 
-	    		$("#myModal").modal('hide');
-
-
+	    			$("#myModal").modal('hide');
+	    			//reorder();
 
 				}
 			}
 
-			reorder();
+			
 		});
 		
 
@@ -206,12 +205,12 @@ $(document).ready(function() {
 			add_item_title_enabled = true;
 
 			$("#add_list").val("Edit");
-			$("#myModalLabel").html("Edit List");
+			$("#myModalLabel").html("Edit Task");
 				
 			$("#title_error").hide();
 
 			var parent_bg_color = $(this).parent().css("background-color");
-			$(".modal-header").css("background-color", parent_bg_color);
+			$("#task_modal_header").css("background-color", parent_bg_color);
 
 			header_content = $(this).prev().html();
 			$("#list_title").val(header_content);
@@ -244,11 +243,33 @@ $(document).ready(function() {
 		
 	
 	//Modify CSS BG for MODAL
-	
-		//$(".btn-primary").click(function(){
-		//	$(".modal-header").css("background-color", $(this).css("background-color"));
-		//})
+	$( "#list_item_holder" ).on( "click", "[class*='color']", function() {
+		
+			//$("#task_modal_header").css("background-color", $(this).css("background-color"));
+			//alert("working");
+			var element = $(this).parent();
+		  	var element_id= $(this).parent().attr("id");
+		  	var color_id = $(this).attr("id"); //the id of the button represents the css color style
+		  	var bg_color = $(this).css("background-color"); //the hexadecimal bg color
 
+		  	
+		  	element.css("background-color", bg_color);
+
+			$.ajax({
+			    type: "POST",
+			    url: '/users/p_editcolor/',
+			    data: { id: element_id, color: color_id },
+			    success: function(data){
+	                 if(data=="YES"){
+	                    element.css("background-color", bg_color);
+	                 }else{
+	                    //alert("can't delete the row")
+	                 }
+	             }
+
+	        });
+	
+	});
 
 
 

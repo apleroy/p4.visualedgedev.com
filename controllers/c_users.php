@@ -11,41 +11,10 @@ class users_controller extends base_controller {
 	public function index() {
 	}
 
-	//$listID = '';
 	
-	public function signup($signup_error = NULL) {
-		
-		$this->template->content = View::instance('v_index_index');
-		
-		$this->template->content->signup_error = $signup_error;
-
-		echo $this->template;
-		
-	}
-
-	public function signup_duplicate($duplicate_error = NULL) {
-		
-		$this->template->content = View::instance('v_index_index');
-		
-		$this->template->content->duplicate_error = $duplicate_error;
-
-		echo $this->template;
-		
-	}
-
-	public function signup_invalid($invalid_error = NULL) {
-		
-		$this->template->content = View::instance('v_index_index');
-		
-		$this->template->content->invalid_error = $invalid_error;
-
-		echo $this->template;
-		
-	}
-
 	public function p_emailcheck() {
+		
 		$email_data = $_POST['ajax_email'];
-
 
 		$q = "SELECT users.email
 				FROM users 
@@ -79,33 +48,30 @@ class users_controller extends base_controller {
 	    			
 		$email_validation = DB::instance(DB_NAME)->select_field($q);
 
-		//validation of empty fields
+		//validation of empty fields - client side validation occurs in signup_validation.js
+		//This is "extra" validation to ensure that blank values do not pass into database
+		//users are just rerouted to the main page
 
 		if (empty($_POST['first_name'])) {
-			Router::redirect("/");//users/signup/");
+			Router::redirect("/");
 
     	} elseif (empty($_POST['last_name'])) {
-    		Router::redirect("/");//users/signup/");
+    		Router::redirect("/");
         	
     	} elseif (empty($_POST['email'])) {
-        	Router::redirect("/");//users/signup/");
+        	Router::redirect("/");
         	
     	} elseif (empty($_POST['password'])) {
-        	Router::redirect("/");//users/signup/");
+        	Router::redirect("/");
         
-        //check for valid email syntax	
+        //check for valid email syntax
+        //this is also done in the bootstrap modal	
     	} elseif (!filter_var($email_a, FILTER_VALIDATE_EMAIL)) {
     	
-			Router::redirect("/");//users/signup/");
+			Router::redirect("/");
 		
     	} 
-    	//check duplicate
-  //   	elseif ($email_validation) {
-				
-		// 	Router::redirect("/");//users/signup_duplicate/signup_duplicate");
-		
-		// //signup the user and send info to DB	
-		// } 
+    	
 		else {
 
 				//1. insert the data into the DB
@@ -151,8 +117,6 @@ class users_controller extends base_controller {
 
 		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 
-		// $_POST['last_login'] = DB::instance(DB_NAME)->insert(Time::now());
-
 		$q = "SELECT token
 			FROM users 
         	WHERE email = '".$_POST['email']."'
@@ -163,15 +127,13 @@ class users_controller extends base_controller {
 		if(!$token) {
 
 			Router::redirect("/users/login/error");
-			//echo "Not valid";
-
+			
 		} else {
 			
 			setcookie("token", $token, strtotime('+1 year'), '/');
 
 			Router::redirect("/users/lists");
-			//echo "Logged in!";
-		
+					
 		}
 	}
 
@@ -199,12 +161,9 @@ class users_controller extends base_controller {
 		$this->template->content = View::instance('v_users_lists');
 
 		//This person's profile and name
-		$this->template->title = "Profile of ".$this->user->first_name;
+		$this->template->title = "Tasks for ".$this->user->first_name;
 
-		$client_files_head = Array(
-	        "/js/jquery.form.js",
-	        "/js/users_lists_add.js"
-    	);
+		$client_files_head = Array();
 
     	$this->template->client_files_head = Utils::load_client_files($client_files_head); 
 
@@ -219,27 +178,17 @@ class users_controller extends base_controller {
 
 			$this->template->content->lists = $lists;
 
-		
-
 		echo $this->template;
-			
-		
+				
 	}
 	
 	public function addlist() {
 
 		$this->template->content = View::instance('v_users_lists_add');
 
-		$client_files_head = Array(
-	        "/js/jquery.form.js",
-	        "/js/users_lists_add.js",
-	        "/js/users_lists_delete.js",
-	        "/js/users_lists_sort.js"
-    	);
+		$client_files_head = Array();
 
     	$this->template->client_files_head = Utils::load_client_files($client_files_head);   
-		
-		//$this->template->content->error = $error;
 		
 		echo $this->template;
 
@@ -256,20 +205,12 @@ class users_controller extends base_controller {
 				);
 		
 
-		//error check to prevent blank post
-		//if(empty($_POST['list_title_entry'])) {
-			
-			//Router::redirect("/lists/add/error");
-		
-		//}
-
-	   	$new_post_id = DB::instance(DB_NAME)->insert('lists', $data);
+		$new_post_id = DB::instance(DB_NAME)->insert('lists', $data);
 	  
 	    # Set up the view
 	    $view = View::instance('v_users_lists_p_add');
 
 	    # Pass data to the view
-	    //$view->created     = $_POST['created'];
 	    $view->list_title_entry = $title_from_ajax;
 	    $view->new_post_id = $new_post_id;
 
@@ -283,16 +224,9 @@ class users_controller extends base_controller {
 
 		$this->template->content = View::instance('v_users_lists_delete');
 
-		$client_files_head = Array(
-	        "/js/jquery.form.js",
-	        "/js/users_lists_add.js",
-	        "/js/users_lists_delete.js",
-	        "/js/users_lists_sort.js"
-    	);
+		$client_files_head = Array();
 
     	$this->template->client_files_head = Utils::load_client_files($client_files_head);   
-		
-		//$this->template->content->error = $error;
 		
 		echo $this->template;
 
@@ -305,8 +239,7 @@ class users_controller extends base_controller {
 		$pos = strpos($data1, '_');
 
 		$data = substr($data1, $pos + 1); //strip the list_ used in the serialize
-		//$delete_query = "DELETE FROM lists WHERE list_id = '$data'";
-
+		
 		$result = DB::instance(DB_NAME)->delete('lists', "WHERE list_id = '$data'");
 
 		if(isset($result)) {
@@ -320,14 +253,9 @@ class users_controller extends base_controller {
 
 	public function editlist() {
 
-		$this->template->content = View::instance('v_users_lists_edit');
+		$this->template->content = View::instance('v_users_lists');
 
-		$client_files_head = Array(
-	        "/js/jquery.form.js",
-	        "/js/users_lists_add.js",
-	        "/js/users_lists_delete.js",
-	        "/js/users_lists_sort.js"
-    	);
+		$client_files_head = Array();
 
     	$this->template->client_files_head = Utils::load_client_files($client_files_head);   
 			
@@ -344,13 +272,6 @@ class users_controller extends base_controller {
 			$id_data = substr($data1, $pos + 1); //strip the list_ used in the serialize
 
 		$text_data = $_POST['text'];
-
-
-
-		//get the text after the "add/edit" button is pressed in the modal
-		//find the row equal to the ellement id
-		//replace the list_title_entry in lists with the new text
-		//display result?  already done through js?
 		
 		$data = Array("list_title_entry" => $text_data);
 		$result = DB::instance(DB_NAME)->update('lists', $data, "WHERE list_id = '$id_data'");
@@ -363,25 +284,45 @@ class users_controller extends base_controller {
 
 	}
 
-	public function sortlist() {
+	public function editcolor() {
 
-		$this->template->content = View::instance('v_users_lists_sort');
+		$this->template->content = View::instance('v_users_lists_editcolor');
 
-		$client_files_head = Array(
-	        "/js/jquery.form.js",
-	        "/js/users_lists_add.js",
-	        "/js/users_lists_delete.js",
-	        "/js/users_lists_sort.js"
-    	);
+		$client_files_head = Array();
 
     	$this->template->client_files_head = Utils::load_client_files($client_files_head);   
 			
 		echo $this->template;
 
 	}
+
+	public function p_editcolor() {
+
+		$data1 = $_POST['id'];
+
+			$pos = strpos($data1, '_');
+
+			$id_data = substr($data1, $pos + 1); //strip the list_ used in the serialize
+
+		$color_data = $_POST['color'];
+		
+		$data = Array("color" => $color_data);
+		$result = DB::instance(DB_NAME)->update('lists', $data, "WHERE list_id = '$id_data'");
+
+		if(isset($result)) {
+		   echo "YES";
+		} else {
+		   echo "NO";
+		}
+
+	}
+	
 	
 
-	
+
+
+
+
 	public function items($listID = NULL) {
 
 		if(!$this->user) {

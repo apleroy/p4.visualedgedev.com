@@ -101,18 +101,19 @@ $(document).ready(function() {
 					    		url: '/users/p_emailcheck/',
 					    		data: { ajax_email: user_email },
 					    		success: function(data) {   
-							         if(data=="Exists"){
-					                    //alert("email is already taken");
+							        if (data=="Exists"){
+					                    
 					                    $("#email_error_taken").show();
 					                    email_avail_enabled = false;
 					                    button_enable();
-					                 }else{
-					                    //alert("email is available");
+
+					                } else {
+					                    
 					                    $("#email_error_taken").hide();
 					                    email_avail_enabled = true;
 					                    button_enable();
-					                    //button_enable();
-					                 }
+
+					                }
 								} 
 					       	});
 						}
@@ -124,11 +125,7 @@ $(document).ready(function() {
 				}
 			});
 
-			//Email availability verification
-			//verify_email();
-
-
-
+			
 		});
 
 		//Password

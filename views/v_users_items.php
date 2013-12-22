@@ -1,8 +1,7 @@
  <div class="container">
 <h1>This is v_users_items</h1>
 	     
-		       <!--  <p class="lead">Add, edit, style, and sort list items to create a working open items list, to-do list, or brief agenda.</p> -->
-		        
+		      	        
 				<!-- Button trigger modal -->
 					<button class="btn btn-primary btn-lg" id="main_add" data-toggle="modal" data-target="#myModal">
 						Add New List Item
@@ -28,38 +27,13 @@
 									</div>
 									<br>
 
-									<!-- <div class="input_holder">	
-										<textarea id="list_text_entry" class="span12" placeholder="List Description" rows="8"></textarea>
-										<div class="input_error" id="body_error">Please enter at least one character.</div>	
-									</div> -->
 								</div>
 									      
 
 								<!--Modal FOOTER -->
 							    <div class="modal-footer">
 							      		
-							      	<!-- <div class="btn-group" id="color_choices" data-toggle="buttons">
-									  <label class="btn btn-primary" id="red">
-									    <input type="radio" name="options" class="color_option">Red
-									  </label>
-									  <label class="btn btn-primary" id="orange">
-									    <input type="radio" name="options" class="color_option">Orange
-									  </label>
-									  <label class="btn btn-primary" id="gray">
-									    <input type="radio" name="options" class="color_option">Gray
-									  </label>
-									  <label class="btn btn-primary" id="green">
-									    <input type="radio" name="options" class="color_option">Green
-									  </label>
-									  <label class="btn btn-primary" id="blue">
-									    <input type="radio" name="options" class="color_option">Blue
-									  </label>
-									  <label class="btn btn-primary" id="purple">
-									    <input type="radio" name="options" class="color_option">Purple
-									  </label>
-									</div>
- -->
-							        <button type="button" class="btn btn-default" id="close_item" data-dismiss="modal">Close</button>
+							      	<button type="button" class="btn btn-default" id="close_item" data-dismiss="modal">Close</button>
 							        <input type='submit' value='Add List' button type="button" class="btn btn-primary" id="add_list"></button>
 
 							    </div>
