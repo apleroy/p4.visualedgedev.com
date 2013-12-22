@@ -7,34 +7,35 @@
 
 
 			<!-- Button trigger modal -->
-				<button class="btn btn-primary btn-lg btn-success" data-toggle="modal" data-target="#myModal">
+				<button class="btn btn-primary btn-lg btn-success" data-toggle="modal" data-target="#signup_modal" id="get_started_button">
 				  Get Started
 				</button>
+				<br><br>
+				<img src='/todolist.jpg' alt="to do list" width="100%" height="80%">
+				<br><br>
 
 				<!-- Modal -->
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal fade" id="signup_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
-				      <!-- <div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-				      </div> -->
-				      <div class="modal-body">
+				      <div class="modal-header" id="signup_form_header">
+				        <p class="lead">Add, edit, style, and sort list items to create a working open items list, to-do list, or brief agenda.</p>
+				      </div>
+				      
 				        
 				        	<form role="form" id="signup_form" method='POST' action='/users/p_signup'>
 	  
 							  <div class="form-group">
-							    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name" name='first_name'>
+							    <input type="text" class="form-control" id="user_signup" placeholder="First Name" name='first_name'>
+							    <div class="user_signup_error" id="first_name_error">FALSE</div>
 							 	
-							    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Last Name" name='last_name'>
+							    <input type="text" class="form-control" id="user_signup" placeholder="Last Name" name='last_name'>
 														 
-							    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name='email'>
+							    <input type="email" class="form-control" id="user_signup" placeholder="Email" name='email'>
 							
-							    <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Password" name='password'>
+							    <input type="password" class="form-control" id="user_signup" placeholder="Password" name='password'>
 							  
-							  </div>
 							  
-							  <button type="submit" class="btn btn-default">Sign Up</button>
 
 							  <?php if(isset($signup_error)): ?>
 									<div class = 'error'>
@@ -49,11 +50,15 @@
 										This is not a valid email address.
 									</div>
 								<?php endif; ?>
+
+								</div>
+							  
+							  <button type="submit" class="btn btn-success" id="sign_up_button">Sign Up</button>
 							</form>
 
 
 
-				      </div>
+				      
 				      <!-- <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        <button type="button" class="btn btn-primary">Save changes</button>

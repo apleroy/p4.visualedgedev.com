@@ -1,5 +1,5 @@
   <div class="container">
-<h1>This is v_lists</h1>
+<!-- <h1>This is v_lists</h1> -->
 	     
 		        <p class="lead">Add, edit, style, and sort list items to create a working open items list, to-do list, or brief agenda.</p>
 		        
@@ -69,7 +69,7 @@
 					</div><!-- /.modal -->
 				<!-- </form>
  -->
- 				<!-- <div id="TEST">Hello</div> -->
+ 				
 				<div id="list_item_holder">
 
 				    <?php foreach ($lists as $list): ?>

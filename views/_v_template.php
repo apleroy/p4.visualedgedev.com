@@ -32,11 +32,11 @@
 <!-- Part 1: Wrap all page content here -->
       <!-- <div id="wrap"> -->
 
-       
+        <div id="wrap">
 
       <?php if($user): ?>
-      <div id="wrap">
-            <div class="navbar navbar-inverse" role="navigation">
+     
+            <div class="navbar navbar-inverse" role="navigation" id="my_nav">
                         <div class="container">
                           <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -64,8 +64,8 @@
            
 
    	 <?php else: ?>
-     <div id="wrap1">
-                   <div class="navbar navbar-inverse" role="navigation">
+
+                   <div class="navbar navbar-inverse" role="navigation" id="my_nav">
                         <div class="container">
                           <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -76,9 +76,9 @@
                             </button>
                             <a class="navbar-brand" href="/">Task Master</a>
                           </div>
-                          <div class="navbar-collapse collapse">
+                          <div class="navbar-collapse collapse navbar-right" id="nav_login">
 
-                            <form class="navbar-form navbar-right" role="form" method='POST' action='/users/p_login'>
+                            <form class="nav navbar-form navbar-right" role="form" method='POST' action='/users/p_login'>
                               <div class="form-group">
                                 <input type="text" placeholder="Email" class="form-control" name='email'>
                               </div>

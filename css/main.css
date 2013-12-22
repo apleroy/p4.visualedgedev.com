@@ -1,3 +1,59 @@
+/*HOME FORMS----------------------------*/
+
+#my_nav {
+  border-radius: 0;
+}
+
+#nav_login {
+  margin-right: -3%;
+}
+
+#get_started_button {
+  width: 100%;
+  margin-top: 0;
+}
+
+
+/*Signup Modal --------------*/
+
+  [id*="user_signup"]  {
+    margin: auto;
+    margin-top: 10px;
+    padding: 5px;
+    width: 90%;
+  }
+
+   .user_signup_error  {
+    margin: auto;
+    padding:2px; 
+      
+    width: 90%;
+    color:red;
+  }
+
+  #sign_up_button {
+    margin: auto;
+    margin-top: 10px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  #signup_modal .modal-dialog {
+      
+      max-width: 350px;
+      margin-top: 150px;
+
+  }
+
+  #signup_form_header {
+    background-color: #049cdb;
+
+  }
+
+  #signup_form_header p {
+    margin: 0;
+  }
 /*.navigation1 {
   width: 100%;
   height: 60px;
@@ -85,13 +141,17 @@
   }
 
   #empty_placeholder {
-    height: 300px;
+    height: 100px;
     width: 100%;
     text-align: center;
     vertical-align: middle;
+    clear:both;
   }
 
-
+  img {
+    opacity:0.7;
+    filter:alpha(opacity=70);
+  }
 /*NEWLY CREATED LIST ELEMENTS------------------------------*/
 
     /*#new, [id*="new_holder"] {
@@ -101,33 +161,35 @@
     [class*="col-"] {
       padding-top: 5px;
       padding-bottom: 5px;
-      min-height: 20px;
+     /* min-height: 20px;*/
       margin-top: 5px;
-      margin-bottom: 5px;
+      /*margin-bottom: 5px;*/
       width: 100%;
        border-radius: 5px;
       border: 1px solid #ddd;
       background-color: rgba(86,61,124,.15);
       border: 1px solid rgba(86,61,124,.2);
+      float: left;
       
     }
 
       .list_item_header {
         color: white;
-        width: 95%;
-        margin: auto;
+        width: 80%;
+        /*margin: auto;*/
         white-space: pre-wrap;
-        min-height: 30px;
-        margin: 2.5%;
+       /* min-height: 30px;*/
+        margin-left: 2.5%;
         margin-bottom: 0;
-        padding: 5px;
+        padding-top: 5px;
         font-family: sans-serif;
         font-size: 20px;
         height: auto;
         overflow: auto;
+        float: left;
       }
 
-      .list_item_body {
+      /*.list_item_body {
         background-color: white;
         width: 95%;
         margin: auto;
@@ -140,14 +202,23 @@
         font-size: 14px;
         height: auto;
         overflow: auto;
-      }
+      }*/
 
     #new_edit_button {
       margin-left: 2.5%;
-      margin-right: 1%;
+      
+      float: left;
+     /* margin-right: 0.5%;*/
       
     }
 
+    #new_delete_button {
+      
+      margin-left: 1%;
+      float: left;
+     /* margin-right: 0.5%;*/
+      
+    }
    
 
 /*MODAL--------------------------------------------*/
@@ -225,20 +296,6 @@ html,
         background-color: gray;
         /*background-image: url('/writers-block.jpg');
         background-size: 100% 100%;*/
-      }
-
-       #wrap1 {
-        min-height: 90%;
-        height: auto !important;
-        height: 90%;
-        
-        margin: 0 auto;
-        background-color: gray;
-        background-image: url('/todolist.jpg');
-        background-size: 80% 70%;
-        background-repeat:no-repeat;
-        background-position:center;
-
       }
 
       /* Set the fixed height of the footer here */
