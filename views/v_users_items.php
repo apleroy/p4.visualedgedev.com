@@ -1,7 +1,7 @@
  <div class="container">
-<h1>This is v_users_lists_items</h1>
+<h1>This is v_users_items</h1>
 	     
-		        <p class="lead">Add, edit, style, and sort list items to create a working open items list, to-do list, or brief agenda.</p>
+		       <!--  <p class="lead">Add, edit, style, and sort list items to create a working open items list, to-do list, or brief agenda.</p> -->
 		        
 				<!-- Button trigger modal -->
 					<button class="btn btn-primary btn-lg" id="main_add" data-toggle="modal" data-target="#myModal">
@@ -71,11 +71,11 @@
 
 
 				<div id="list_item_holder">
-					<?php foreach ($lists as $list): ?>
+					<?php foreach ($items as $item): ?>
 				   	
 						<div class='.col-md-12' id='new'>
 
-							<div class='list_item_header' id='new_header'><?=$list['list_title_entry']?> Test</div>
+							<div class='list_item_header' id='new_header'><?=$item['content']?></div>
 								
 							<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#myModal' id='new_edit_button'>Edit</button>
 							

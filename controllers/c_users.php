@@ -2,6 +2,8 @@
 
 class users_controller extends base_controller {
 
+	
+
 	public function __construct() {
 		parent::__construct();
 	}
@@ -9,7 +11,7 @@ class users_controller extends base_controller {
 	public function index() {
 	}
 
-
+	//$listID = '';
 	
 	public function signup($signup_error = NULL) {
 		
@@ -41,48 +43,70 @@ class users_controller extends base_controller {
 		
 	}
 
+	public function p_emailcheck() {
+		$email_data = $_POST['ajax_email'];
+
+
+		$q = "SELECT users.email
+				FROM users 
+	        	WHERE users.email = '".$email_data."'
+	        	";
+			
+		$email_validation = DB::instance(DB_NAME)->select_field($q);
+
+		if($email_validation) {
+		   echo "Exists";
+		} else {
+		   echo "Available";
+		}
+
+	}
+
 
 	public function p_signup() {
 
 		
 		//ensure valid email address syntax- this is the variable to be used below in syntax check
 		$email_a = $_POST['email'];
+		//$email_data = $_POST['ajax_email'];
 
 		//check to ensure there is not already a user with that email (a duplicate)
 		$q = "SELECT users.email
 				FROM users 
 	        	WHERE users.email = '".$_POST['email']."'
 	        	";
-			
+
+	    			
 		$email_validation = DB::instance(DB_NAME)->select_field($q);
 
 		//validation of empty fields
 
 		if (empty($_POST['first_name'])) {
-			Router::redirect("/users/signup/signup_error");
+			Router::redirect("/");//users/signup/");
 
     	} elseif (empty($_POST['last_name'])) {
-    		Router::redirect("/users/signup/signup_error");
+    		Router::redirect("/");//users/signup/");
         	
     	} elseif (empty($_POST['email'])) {
-        	Router::redirect("/users/signup/signup_error");
+        	Router::redirect("/");//users/signup/");
         	
     	} elseif (empty($_POST['password'])) {
-        	Router::redirect("/users/signup/signup_error");
+        	Router::redirect("/");//users/signup/");
         
         //check for valid email syntax	
     	} elseif (!filter_var($email_a, FILTER_VALIDATE_EMAIL)) {
     	
-			Router::redirect("/users/signup_invalid/signup_invalid");
+			Router::redirect("/");//users/signup/");
 		
     	} 
     	//check duplicate
-    	elseif ($email_validation) {
+  //   	elseif ($email_validation) {
 				
-			Router::redirect("/users/signup_duplicate/signup_duplicate");
+		// 	Router::redirect("/");//users/signup_duplicate/signup_duplicate");
 		
-		//signup the user and send info to DB	
-		} else {
+		// //signup the user and send info to DB	
+		// } 
+		else {
 
 				//1. insert the data into the DB
 
@@ -355,40 +379,79 @@ class users_controller extends base_controller {
 		echo $this->template;
 
 	}
-	public function p_sortlist() {
+	
 
-		
-		//DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = 56");
-		$i = 0;
+	
+	public function items($listID = NULL) {
 
-		$array = unserialize($_POST['test']);
-
-		//print_r($array);
-		//echo $array[0];
-		foreach($array as &$value) {
-
-			//$data = Array('sort_order' => $i);
-			
-			DB::instance(DB_NAME)->update('lists', "'sort_order' => $i", "WHERE list_id = '$value'");
-			
-			$i++;
-		
+		if(!$this->user) {
+			Router::redirect('/users/login');
 		}
 
-		//echo $data;
+		$this->template->content = View::instance('v_users_items');
 
-		//echo $data;
+		//This person's profile and name
+		$this->template->title = "Profile of ".$this->user->first_name;
 
-		// $query = 'SELECT * 
-		// 			FROM lists
-		// 			WHERE lists.user_id = '.$this->user->user_id .'
-		// 			ORDER BY sort_order ASC';
+
+		$client_files_head = Array(
+	        
+
+    	);
+
+
+		$this->template->content->$listID = $_POST['idx'];
+
+		echo $listID;
+
+
+
+
+
+    	$this->template->client_files_head = Utils::load_client_files($client_files_head); 
+
+    	//$list_id = $_POST['id'];
+
+		//echo $list_id;
+			// $itemsQ = 'SELECT *
+			// 		FROM items
+			// 		WHERE items.list_id = '.$list_id .'
+			// 		';//ORDER BY sort_order ASC';
+					
+
+			// $items = DB::instance(DB_NAME)->select_rows($itemsQ);
+
+			// $this->template->content->items = $items;
+  //   	$list_id = $_POST['idx'];
+
+		// echo $list_id;
 		
-		// $result = DB::instance(DB_NAME)->select_rows($query);
 
+		echo $this->template;
+			
 		
 	}
 
+
+	public function getitems() {
+
+		
+		$this->template->content = View::instance('v_users_items_get');
+	
+
+    	$this->template->client_files_head = Utils::load_client_files($client_files_head); 
+
+    	
+		echo $this->template;
+			
+		
+	}
+
+	public function p_getitems() {
+		//$listID = $_POST['idx'];
+
+		//print_r($list_id);
+	}
 
 }
 

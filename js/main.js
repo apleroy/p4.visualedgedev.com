@@ -38,7 +38,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: '/test/p_sortlist/',
+			url: '/serial/p_sortlist/',
 			data: { test: ser }
 		});
 	}
@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 	    		$.ajax({
 	    			type: "POST",
-	    			url: '/test/p_sortlist/',
+	    			url: '/serial/p_sortlist/',
 	    			data: { test: ser }
 	    		});
 
@@ -85,7 +85,7 @@ $(document).ready(function() {
 
 				$("#list_title").val('');
 				$("#list_text_entry").val('');
-				$("#add_list").html("Add Item");
+				$("#add_list").val("Add Item");
 				$("#myModalLabel").html("New List");
 				
 				edit_clicked = false;
@@ -223,6 +223,23 @@ $(document).ready(function() {
 		});
 
 
+
+		// $( "#list_item_holder" ).on( "click", "#new_view_button", function() {
+		  	
+		//   	//alert("button clicked");
+		// 	var l_element = $(this).parent();
+		// 	var l_element_id= $(this).parent().attr("id");
+		//   	//var element_id= $(this).parent().attr("id");
+		//   	alert(l_element_id);
+			
+		// 	  	$.ajax({
+		// 		    type: "POST",
+		// 		    url: '/users/items/',
+		// 		    data: { idx: l_element_id }
+		// 		});
+			  	
+
+		// });
 
 		
 	

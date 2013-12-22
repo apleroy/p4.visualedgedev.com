@@ -19,6 +19,8 @@
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="/js/bootstrap.js"></script>
       <script src="/js/main.js"></script>
+      <script src="/js/signup_validation.js"></script>
+      <script src="/js/item.js"></script>
 
 	<!-- Controller Specific JS/CSS -->
 	<?php if(isset($client_files_head)) echo $client_files_head; ?>

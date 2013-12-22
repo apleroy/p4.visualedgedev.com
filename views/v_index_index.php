@@ -26,14 +26,18 @@
 				        	<form role="form" id="signup_form" method='POST' action='/users/p_signup'>
 	  
 							  <div class="form-group">
-							    <input type="text" class="form-control" id="user_signup" placeholder="First Name" name='first_name'>
-							    <div class="user_signup_error" id="first_name_error">FALSE</div>
+							    <input type="text" class="form-control" id="user_signup_firstname" placeholder="First Name" name='first_name'>
+							    <div class="user_signup_error" id="firstname_error">Please enter at least one character</div>
 							 	
-							    <input type="text" class="form-control" id="user_signup" placeholder="Last Name" name='last_name'>
+							    <input type="text" class="form-control" id="user_signup_lastname" placeholder="Last Name" name='last_name'>
+							    <div class="user_signup_error" id="lastname_error">Please enter at least one character</div>
 														 
-							    <input type="email" class="form-control" id="user_signup" placeholder="Email" name='email'>
+							    <input type="email" class="form-control" id="user_signup_email" placeholder="Email" name='email'>
+							    <div class="user_signup_error" id="email_error">Please enter a valid email</div>
+							    <div class="user_signup_error" id="email_error_taken">This email is already in use</div>
 							
-							    <input type="password" class="form-control" id="user_signup" placeholder="Password" name='password'>
+							    <input type="password" class="form-control" id="user_signup_password" placeholder="Password" name='password'>
+							    <div class="user_signup_error" id="password_error">Please enter at least four characters</div>
 							  
 							  
 

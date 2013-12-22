@@ -54,6 +54,11 @@
   #signup_form_header p {
     margin: 0;
   }
+
+  #view_a {
+    text-decoration: none;
+    color: black;
+  }
 /*.navigation1 {
   width: 100%;
   height: 60px;
@@ -175,7 +180,7 @@
 
       .list_item_header {
         color: white;
-        width: 80%;
+        width: 85%;
         /*margin: auto;*/
         white-space: pre-wrap;
        /* min-height: 30px;*/
@@ -204,21 +209,21 @@
         overflow: auto;
       }*/
 
-    #new_edit_button {
-      margin-left: 2.5%;
+    #new_edit_button, #new_delete_button, #new_view_button {
+      margin-left: 1%;
       
       float: left;
      /* margin-right: 0.5%;*/
       
     }
 
-    #new_delete_button {
+    /*#new_delete_button {
       
       margin-left: 1%;
       float: left;
-     /* margin-right: 0.5%;*/
+     
       
-    }
+    }*/
    
 
 /*MODAL--------------------------------------------*/
