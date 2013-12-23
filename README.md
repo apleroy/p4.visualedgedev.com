@@ -10,16 +10,16 @@ and position for each item.  The user has the ability to update and edit task te
 the task list are saved for future reference.
 
 This application is dependent upon user generated input and the use cases are specific to list based analysis.  
-However, the functionality involved with this application will greatly help me and serve as a base for my larger application ideas I intend to pursue moving forward.  
+However, the functionality involved with this application will greatly help me and serve as a base for larger application ideas I intend to pursue moving forward.  
 
 - /user/
--	/tasklist (sortable)
--		/task
--			/create
--			/edit
--			/delete
--			/style
--			/position
+  -	/tasklist (sortable)
+    -		  /task
+    -			/create
+    -			/edit
+    -			/delete
+    -			/style
+    -			/position
 
 
 The key functions involved in this application are:
@@ -42,7 +42,7 @@ used on success to make all changes in real time.
 The serialize function is called after each function to preserve the order and the order is written to the database on any modification.
 
 - User Signup Validation: is handled through javascript, with PHP serving as a "bacukup" to prevent blank data and sanitizing results.
-Ajax is used in the user signup to dynamically searching if a given email address is already in use.
+Ajax is used in the user signup for dynamically searching if a given email address is already in use.
 
 Resources:
 Stack Overflow, jQuery API, Bootstrap, and Bootstrap tutorials.  Especially for the serialize function and my initial ajax calls, I leveraged several examples
@@ -55,13 +55,13 @@ Open Items:
 Moving forward, I am very interested in adding another dimension to my lists where every user has lists, and each list has items.
 
 -/user
--	/list1
--		/itemA
--		/itemB
--		/itemC
--	/list2
--		/itemD
--		/itemE
+  -	/list1
+    -		/itemA
+    -		/itemB
+    -		/itemC
+  -	/list2
+    -		/itemD
+    -		/itemE
 
 Just as tasks are sortable and editable now, both lists and their associated tasks would be sortable and editable.  I ran into challenges attempting
 to pass the list "ID" to a new view via Ajax in my attempts at this.  I am very open to any advice or ideas.
