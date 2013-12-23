@@ -55,13 +55,13 @@ Open Items:
 Moving forward, I am very interested in adding another dimension to my lists where every user has lists, and each list has items.
 
 -/user
--	/list1
--		/itemA
--		/itemB
--		/itemC
--	/list2
--		/itemD
--		/itemE
+  -	/list1
+    -		/itemA
+    -		/itemB
+    -		/itemC
+  -	/list2
+    -		/itemD
+    -		/itemE
 
 Just as tasks are sortable and editable now, both lists and their associated tasks would be sortable and editable.  I ran into challenges attempting
 to pass the list "ID" to a new view via Ajax in my attempts at this.  I am very open to any advice or ideas.
