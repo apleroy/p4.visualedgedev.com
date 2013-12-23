@@ -1,0 +1,61 @@
+2013-12-22 19:44:06 - INFO --> -------------------------- 
+2013-12-22 19:44:06 - INFO --> Controller/Method: users/p_login 
+2013-12-22 19:44:06 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY webmaster@myapp.com 
+2013-12-22 19:44:06 - INFO --> From: p4.visualedgedev.com (webmaster@sample-app.com) 
+2013-12-22 19:44:06 - INFO --> To: p4.visualedgedev.com (webmaster@myapp.com),  
+2013-12-22 19:44:06 - INFO --> CC:  
+2013-12-22 19:44:06 - INFO --> BCC:  
+2013-12-22 19:44:06 - INFO --> Subject: p4.visualedgedev.com SQL Error 
+2013-12-22 19:44:06 - INFO --> Body: <h2>SQL Error</h2>Access denied for user 'visualed_p4'@'localhost' (using password: YES)<h2>Query History</h2><h2>Routed Controller/Method:</h2> users/p_login<br/><h2>Cookies</h2><pre>Array
+(
+    [PHPSESSID] => 54f9a6f3a94cab3205427bfa082a07d8
+)
+</pre><h2>POST</h2><pre>Array
+(
+    [email] => 
+    [p 
+2013-12-22 19:58:08 - INFO --> -------------------------- 
+2013-12-22 19:58:08 - INFO --> Controller/Method: users/p_login 
+2013-12-22 19:58:08 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY webmaster@myapp.com 
+2013-12-22 19:58:08 - INFO --> From: p4.visualedgedev.com (webmaster@sample-app.com) 
+2013-12-22 19:58:08 - INFO --> To: p4.visualedgedev.com (webmaster@myapp.com),  
+2013-12-22 19:58:08 - INFO --> CC:  
+2013-12-22 19:58:08 - INFO --> BCC:  
+2013-12-22 19:58:08 - INFO --> Subject: p4.visualedgedev.com SQL Error 
+2013-12-22 19:58:08 - INFO --> Body: <h2>SQL Error</h2> SELECT token
+			FROM users 
+        	WHERE email = ''
+        	AND password = '84802489959df1bc7124a1a492192d518c1c49db' No database selected<h2>Query History</h2>0 = SELECT token
+			FROM users 
+        	WHERE email = ''
+        	AND password = '84802489959df1bc7124a1a492192d518c1 
+2013-12-22 19:58:13 - INFO --> -------------------------- 
+2013-12-22 19:58:13 - INFO --> Controller/Method: users/p_login 
+2013-12-22 19:58:13 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY webmaster@myapp.com 
+2013-12-22 19:58:13 - INFO --> From: p4.visualedgedev.com (webmaster@sample-app.com) 
+2013-12-22 19:58:13 - INFO --> To: p4.visualedgedev.com (webmaster@myapp.com),  
+2013-12-22 19:58:13 - INFO --> CC:  
+2013-12-22 19:58:13 - INFO --> BCC:  
+2013-12-22 19:58:13 - INFO --> Subject: p4.visualedgedev.com SQL Error 
+2013-12-22 19:58:13 - INFO --> Body: <h2>SQL Error</h2> SELECT token
+			FROM users 
+        	WHERE email = ''
+        	AND password = '84802489959df1bc7124a1a492192d518c1c49db' No database selected<h2>Query History</h2>0 = SELECT token
+			FROM users 
+        	WHERE email = ''
+        	AND password = '84802489959df1bc7124a1a492192d518c1 
+2013-12-22 19:58:18 - INFO --> -------------------------- 
+2013-12-22 19:58:18 - INFO --> Controller/Method: users/p_login 
+2013-12-22 19:58:18 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY webmaster@myapp.com 
+2013-12-22 19:58:18 - INFO --> From: p4.visualedgedev.com (webmaster@sample-app.com) 
+2013-12-22 19:58:18 - INFO --> To: p4.visualedgedev.com (webmaster@myapp.com),  
+2013-12-22 19:58:18 - INFO --> CC:  
+2013-12-22 19:58:18 - INFO --> BCC:  
+2013-12-22 19:58:18 - INFO --> Subject: p4.visualedgedev.com SQL Error 
+2013-12-22 19:58:18 - INFO --> Body: <h2>SQL Error</h2> SELECT token
+			FROM users 
+        	WHERE email = ''
+        	AND password = '84802489959df1bc7124a1a492192d518c1c49db' No database selected<h2>Query History</h2>0 = SELECT token
+			FROM users 
+        	WHERE email = ''
+        	AND password = '84802489959df1bc7124a1a492192d518c1 

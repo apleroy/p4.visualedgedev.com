@@ -1,7 +1,7 @@
 <div class="container">
 	<?php if(isset($error)): ?>
       <div id='error'>
-        Login failed. Please double check your email and password.
+        Login failed. Please double check your email and password...
       </div>
       <br>
     <?php endif; ?>
@@ -15,12 +15,12 @@
 		
 		<br><br>
 		
-		<img src='/todolist.jpg' alt="to do list" width="100%" height="80%">
+		<img src='/todolist.jpg' alt="to do list" id="my_image">
 		
 		<br><br>
 
 		<!-- Modal -->
-		<div class="modal fade" id="signup_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="signup_modal" tabindex="-1" role="dialog" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      
