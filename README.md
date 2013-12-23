@@ -12,14 +12,14 @@ the task list are saved for future reference.
 This application is dependent upon user generated input and the use cases are specific to list based analysis.  
 However, the functionality involved with this application will greatly help me and serve as a base for my larger application ideas I intend to pursue moving forward.  
 
-/user/
-	/tasklist (sortable)
-		/task
-			/create
-			/edit
-			/delete
-			/style
-			/position
+- /user/
+-	/tasklist (sortable)
+-		/task
+-			/create
+-			/edit
+-			/delete
+-			/style
+-			/position
 
 
 The key functions involved in this application are:
@@ -54,14 +54,14 @@ Sign Up Page Image: http://www.getbetterhq.com/wp-content/uploads/2013/09/to-do-
 Open Items:
 Moving forward, I am very interested in adding another dimension to my lists where every user has lists, and each list has items.
 
-/user
-	/list1
-		/itemA
-		/itemB
-		/itemC
-	/list2
-		/itemD
-		/itemE
+-/user
+-	/list1
+-		/itemA
+-		/itemB
+-		/itemC
+-	/list2
+-		/itemD
+-		/itemE
 
 Just as tasks are sortable and editable now, both lists and their associated tasks would be sortable and editable.  I ran into challenges attempting
 to pass the list "ID" to a new view via Ajax in my attempts at this.  I am very open to any advice or ideas.
