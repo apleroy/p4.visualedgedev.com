@@ -1,7 +1,7 @@
 <div class="container">
 	<?php if(isset($error)): ?>
       <div id='error'>
-        Login failed. Please double check your email and password...
+        Login failed. Please double check your email and password.
       </div>
       <br>
     <?php endif; ?>
