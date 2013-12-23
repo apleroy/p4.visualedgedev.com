@@ -13,13 +13,13 @@ This application is dependent upon user generated input and the use cases are sp
 However, the functionality involved with this application will greatly help me and serve as a base for my larger application ideas I intend to pursue moving forward.  
 
 - /user/
--	/tasklist (sortable)
--		/task
--			/create
--			/edit
--			/delete
--			/style
--			/position
+  -	/tasklist (sortable)
+    -		  /task
+    -			/create
+    -			/edit
+    -			/delete
+    -			/style
+    -			/position
 
 
 The key functions involved in this application are:
