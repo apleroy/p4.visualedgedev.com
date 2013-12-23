@@ -14,7 +14,7 @@
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="/js/jquery.js"></script>
       <script src="/js/jqueryUI.js"></script>
-      <script src="/js/bootstrap.js"></script>
+     
       <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"> -->
 
       <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -121,11 +121,11 @@
     </div>
                       
 	
-
-
-</body>
-      
+      <script src="/js/bootstrap.js"></script>
       <script src="/js/main.js"></script>
       <script src="/js/signup_validation.js"></script>
       <script src="/js/item.js"></script>
+</body>
+      
+      
 </html>
