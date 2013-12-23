@@ -27,8 +27,10 @@ class serial_controller extends base_controller {
 
 		$str = $_POST['test'];
 
-		parse_str($str);
+		parse_str($str); //parse the serialized string
 
+		//the string items came in as list[]=1 - parse through each and assign a sort order
+		
 		foreach ($list as $value) {
 
 			$data = Array('sort_order' => $i);
